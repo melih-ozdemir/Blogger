@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="Blogger.Web.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +22,6 @@
     <link rel="stylesheet" href="Content/assets/css/fontawesome.css">
     <link rel="stylesheet" href="Content/assets/css/templatemo-stand-blog.css">
     <link rel="stylesheet" href="Content/assets/css/owl.css">
-
 </head>
 
 <body>
@@ -40,7 +40,7 @@
         <header class="">
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="/Home.aspx">
                         <h2>Stand Blog<em>.</em></h2>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home
+                                <a class="nav-link" href="/Home.aspx">Anasayfa
                   <span class="sr-only">(current)</span>
                                 </a>
                             </li>
@@ -75,37 +75,26 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
+                        </asp:ContentPlaceHolder>
                     </div>
                     <div class="col-lg-4">
                         <div class="sidebar">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="sidebar-item search">
-                                        <form id="search_form" name="gs" method="GET" action="#">
-                                            <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
                                     <div class="sidebar-item recent-posts">
                                         <div class="sidebar-heading">
-                                            <h2>Recent Posts</h2>
+                                            <h2>Son Eklenenler</h2>
                                         </div>
                                         <div class="content">
                                             <ul>
-                                                <li><a href="post-details.html">
-                                                    <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
-                                                    <span>May 31, 2020</span>
-                                                </a></li>
-                                                <li><a href="post-details.html">
-                                                    <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-                                                    <span>May 28, 2020</span>
-                                                </a></li>
-                                                <li><a href="post-details.html">
-                                                    <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
-                                                    <span>May 14, 2020</span>
-                                                </a></li>
+                                                <asp:ListView ID="lstRecentsPost" runat="server">
+                                                    <ItemTemplate>
+                                                        <li><a href='/ReadArticle.aspx?id=<%#Eval("Id") %>'>
+                                                            <h5><%#Eval("Title")%></h5>
+                                                            <span><%#Eval("CreationTime")%></span>
+                                                        </a></li>
+                                                    </ItemTemplate>
+                                                </asp:ListView>
                                             </ul>
                                         </div>
                                     </div>
@@ -113,16 +102,15 @@
                                 <div class="col-lg-12">
                                     <div class="sidebar-item categories">
                                         <div class="sidebar-heading">
-                                            <h2>Categories</h2>
+                                            <h2>Kategoriler</h2>
                                         </div>
                                         <div class="content">
                                             <ul>
-                                                <li><a href="#">- Nature Lifestyle</a></li>
-                                                <li><a href="#">- Awesome Layouts</a></li>
-                                                <li><a href="#">- Creative Ideas</a></li>
-                                                <li><a href="#">- Responsive Templates</a></li>
-                                                <li><a href="#">- HTML5 / CSS3 Templates</a></li>
-                                                <li><a href="#">- Creative &amp; Unique</a></li>
+                                                <asp:Repeater ID="rptCategories" runat="server">
+                                                    <ItemTemplate>
+                                                        <li><a href='/Home.aspx?categoryId=<%#Eval("Id") %>'>- <%#Eval("Name")%></a></li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
                                             </ul>
                                         </div>
                                     </div>

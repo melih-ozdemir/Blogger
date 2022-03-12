@@ -21,6 +21,26 @@ namespace Blogger.Service.Services
             return result;
         }
 
+        public List<Article> GetAllIsActive()
+        {
+            string commandText = "Select a.*,c.Name as CategoryName from Article a inner join Category c on a.CategoryId = c.Id where a.IsActive=1";
+            var result = BloggerContext.SqlConnection.Query<Article>(commandText).ToList();
+            return result;
+        }
+
+        public List<Article> GetAllIsActiveByCategory(int categoryId)
+        {
+            string commandText = "Select a.*,c.Name as CategoryName from Article a inner join Category c on a.CategoryId = c.Id where a.IsActive=1 and a.CategoryId=@catId";
+            var result = BloggerContext.SqlConnection.Query<Article>(commandText, new { @catId = categoryId }).ToList();
+            return result;
+        }
+
+        public List<Article> GetAllIsActiveLastThreePost()
+        {
+            string commandText = "Select top 3 a.*,c.Name as CategoryName from Article a inner join Category c on a.CategoryId = c.Id where a.IsActive = 1 order by Id desc";
+            var result = BloggerContext.SqlConnection.Query<Article>(commandText).ToList();
+            return result;
+        }
         public Article Get(int id)
         {
             string commandText = "Select a.*,c.Name as CategoryName from Article a inner join Category c on a.CategoryId = c.Id where a.Id = @id";

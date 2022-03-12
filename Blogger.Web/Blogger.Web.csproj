@@ -622,6 +622,7 @@
     <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Content\vendor\jquery\jquery.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="ReadArticle.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Models\Home.aspx" />
     <Content Include="Web.config" />
@@ -671,6 +672,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ReadArticle.aspx.cs">
+      <DependentUpon>ReadArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReadArticle.aspx.designer.cs">
+      <DependentUpon>ReadArticle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
